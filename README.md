@@ -77,17 +77,19 @@ project_root/
 * **Python** (PyQt5, Pandas, Numpy)
 * **Oracle Database** (SQL)
 * **Machine Learning**: Scikit-learn, XGBoost
-* **Visualization**: Matplotlib, Streamlit (optional)
-* **Web Scraping**: BeautifulSoup, Selenium
+* **Visualization**: Matplotlib, PyQt5
+* **Web Scraping**: BeautifulSoup,Requests, Selenium
 * **PDF Parsing**: pdfminer.high\_level
 
 ## 💡 How It Works
 
-1. **Data Ingestion**: Job offers are scraped and stored.
-2. **Database Sync**: Cleaned data is inserted into Oracle.
-3. **Visualization**: Interactive dashboards show top jobs & skills.
-4. **Prediction**: Time-series forecasts are made for next 6 months.
-5. **Recommendation**: CVs are matched against predicted demands.
+💡 How It Works
+
+1-Data Ingestion: Run all scraping scripts manually to collect job offers.
+
+2-Database Sync: Insert CSVs into Oracle using CSV_TO_DATABASE.py.
+
+3-run "main.py" to Launch PyQt5 interface
 
 ## 🚀 Quick Start
 
