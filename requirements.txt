@@ -1,0 +1,10 @@
+pandas
+numpy
+matplotlib
+scikit-learn
+xgboost
+PyQt5
+pdfminer.six
+oracledb
+beautifulsoup4
+selenium
