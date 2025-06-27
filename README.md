@@ -1,45 +1,108 @@
 # Job Market Intelligence System
 
-This data-driven project aims to assist students and job seekers by analyzing job trends in the IT and Finance sectors, using data scraped from national and international job boards.
+This project is designed to help students and job seekers navigate the complex job market by leveraging scraped data from various job platforms, storing it in a structured Oracle database, and delivering visual analytics and predictive insights using machine learning.
 
-## 📌 Problem Statement
+## 👉 Problem Statement
 
-The number of job titles and specialties in the labor market increases every day. Fresh graduates and students seeking internships or employment often face difficulty identifying the right jobs that align with their education and skills.
+With the continuous emergence of new professions and specialties, identifying the right job becomes a challenge for fresh graduates and individuals entering the workforce. Navigating thousands of offers and understanding market demands is overwhelming.
 
-## ✅ Proposed Solution
+## 🛠️ Solution Overview
 
-Our recommendation system tackles this issue by:
-- **Scraping** real-time job data from 4 platforms (emploi.ma, jobboom, marocannonces, remoteok).
-- **Cleaning and storing** the data in an **Oracle Database**.
-- **Visualizing** top jobs and in-demand skills using **PyQt5** dashboards.
-- **Predicting** future job and skill trends using **XGBoost** and **Scikit-learn**.
-- **Recommending** job roles based on users' resumes using PDF parsing (`pdfminer.high_level`).
+Our system addresses this challenge by:
 
-## ⚙️ Technologies
+* **Scraping** job data from four national and international websites.
+* **Cleaning** and storing job data in an **Oracle Database**.
+* **Visualizing** top jobs and skills per domain using PyQt5 and matplotlib.
+* **Predicting** future in-demand jobs and skills using **Scikit-learn** and **XGBoost**.
+* **Recommending** relevant jobs based on uploaded resumes (CVs) using **PDF parsing** (pdfminer).
 
-- 🐍 Python
-- 📊 Pandas, Matplotlib, Seaborn
-- 💻 Oracle Database (SQL)
-- 🤖 XGBoost, Scikit-learn (ML)
-- 🕸️ Selenium, BeautifulSoup (Web scraping)
-- 🖼️ PyQt5 , Matplotlib (Visualization)
-- 📄 pdfminer (CV parsing)
+## 📊 Key Features
 
-## 📈 Features
+### ✅ Data Collection
 
-### 🔎 Data Scraping
-- Extract job offers from 4 job websites.
-- Clean region, date, and skill fields.
-- Normalize and store in Oracle DB.
+* Source platforms: emploi.ma, jobboom, marocannonces, remoteok
+* Stored as CSV in the `SCRAPING/` folder
+* Unified and preprocessed before database insertion
 
-### 📊 Data Visualization
-- Top 5 jobs and skills by domain (IT / Finance).
-- Interactive dashboards built with PyQt5.
+### ✉️ Database Management
 
-### 🔮 Prediction Engine
-- Forecast top 3 specialties and 5 skills for the next 6 months.
-- Uses pipelines with `StandardScaler` and `XGBRegressor`.
+* Oracle DB schema in `database/jobs_database.sql`
+* Connection and insertion logic in `database/csv_connection.py` and `db_connection.py`
 
-### 🎯 Resume Matching
-- Upload a PDF resume.
-- Automatically extract keywords and match them with predicted job offers.
+### 📊 Visualizations
+
+* Dashboards built using **PyQt5**
+* Files: `dashboard_page.py`, `competence_dashboard.py`
+
+### 🤖 Prediction Engine
+
+* `prediction_page.py`, `competence_prediction.py`
+* ML pipeline: `StandardScaler()` + `XGBRegressor()`
+* Forecasts job/skill trends (next 6 months)
+
+### 💼 CV Recommendation
+
+* Users upload PDF resumes
+* System extracts skills and matches with job offers
+* Logic in `job_matcher.py` and `recommandation_page.py`
+
+## 📂 Project Directory Structure
+
+```
+project_root/
+|
+├── database/
+│   ├── jobs_database.sql         # SQL schema
+│   └── csv_connection.py         # Load CSVs to Oracle DB
+│
+├── SCRAPING/
+│   ├── jobboom.py
+│   ├── emplois_ma.py
+│   └── ...
+│
+├── competence_dashboard.py       # Visualize skill data
+├── competence_prediction.py      # Predict skills
+├── dashboard_page.py             # Visualize job offers
+├── data_loader.py                # Load data for visual/ML
+├── db_connection.py              # Oracle DB helper
+├── job_matcher.py                # Match CVs with jobs
+├── prediction_page.py            # Predict jobs
+├── recommandation_page.py        # Recommendation logic
+├── main.py                       # Main PyQt5 interface
+└── README.md
+```
+
+## 🔧 Technologies Used
+
+* **Python** (PyQt5, Pandas, Numpy)
+* **Oracle Database** (SQL)
+* **Machine Learning**: Scikit-learn, XGBoost
+* **Visualization**: Matplotlib, Streamlit (optional)
+* **Web Scraping**: BeautifulSoup, Selenium
+* **PDF Parsing**: pdfminer.high\_level
+
+## 💡 How It Works
+
+1. **Data Ingestion**: Job offers are scraped and stored.
+2. **Database Sync**: Cleaned data is inserted into Oracle.
+3. **Visualization**: Interactive dashboards show top jobs & skills.
+4. **Prediction**: Time-series forecasts are made for next 6 months.
+5. **Recommendation**: CVs are matched against predicted demands.
+
+## 🚀 Quick Start
+
+```bash
+# Install Python dependencies
+pip install -r requirements.txt
+
+# Run the main interface
+python main.py
+```
+
+## 👤 Author
+
+Meriam SIKINI
+
+---
+
+For any queries or issues, feel free to open an issue or contact the maintainer.
